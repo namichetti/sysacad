@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<title th:text="${titulo}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script src="@{/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+
+	<nav th:fragment="navbar"
+		class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/}">CRUD - Java</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" th:href="@{/materia/}">Lista Materias</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+					class="nav-link" th:href="@{/profesor/}">Lista Profesores</a></li>
+				<li>
+					<div class="dropdown" sec:authorize="isAuthenticated()">
+						<button class="btn btn-primary dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">
+							<span sec:authentication="name"></span>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<form method="POST" th:action="@{/logout}">
+								<button class="dropdown-item" type="submit">Salir</button>
+							</form>
+						</div>
+					</div>
+				</li>
+				<li sec:authorize="isAuthenticated()">
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<span sec:authentication="name"></span>
+						<form th:action="@{/logout}" method="POST">
+							<a class="btn btn-outline-primary" type="submit">Salir</a>
+						</form>
+					</div>
+				</li>
+
+				<li sec:authorize="!isAuthenticated()">
+					<div class="btn-group" role="group">
+						<a class="btn btn-outline-primary" th:href="@{/login}">Ingresar</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div th:fragment="alerts">
+		<div th:if="${danger!=null}" th:text="${danger}"
+			class="alert alert-danger"></div>
+		<div th:if="${info!=null}" th:text="${info}" class="alert alert-info"></div>
+		<div th:if="${success!=null}" th:text="${success}"
+			class="alert alert-success"></div>
+	</div>
+
+	<div th:fragment="roles">
+		<div class="container">
+			Usuario logueado: <span sec:authentication="name"></span> Roles: <span
+				sec:authentication="principal.authorities"></span>
+		</div>
+	</div>
+
+	<div th:fragment="scripts">
+		<script th:src="@{/js/popper.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	</div>
+</body>
+</html>

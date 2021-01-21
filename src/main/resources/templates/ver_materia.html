@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<body>
+	<div th:replace="layout/layout :: navbar"></div>
+	<div th:replace="layout/layout :: alerts"></div>
+	<!--<h2 class="text text-primary text-center pt-3">
+		Usuario: <span th:text="${cliente.username}"></span>
+	</h2> -->
+	
+	<h1 class="text text-primary text-center pt-3" th:text="${titulo}"></h1>
+	<div class="container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Materia</th>
+					<th>Horario</th>
+					<th>Cupo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${materia.nombre}"></td>
+					<td th:text="${materia.horario}"></td>		
+					<td th:text="${materia.cupo} + ' alumnos '"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<h1 class="text text-primary text-center pt-3" th:text="${subTitulo}"></h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="profesor:${materia.profesores}">
+					<td th:text="${profesor.nombre}"></td>
+					<td th:text="${profesor.apellido}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<a class ="btn btn-primary" th:href="@{/materia/}">Volver</a>
+	</div>
+</body>
+</html>

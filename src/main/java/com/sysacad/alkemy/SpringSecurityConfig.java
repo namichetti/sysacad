@@ -23,7 +23,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/css/**,/js/**").hasRole("USER")
 		.and()
 		.formLogin();
-	    http.csrf().disable();
 
 	}
 

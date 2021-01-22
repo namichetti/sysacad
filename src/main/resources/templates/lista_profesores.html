@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head">
+<body>
+	<div th:replace="layout/layout :: navbar"></div>
+	<div th:replace="layout/layout :: alerts"></div>
+	<h1 class="text text-primary text-center pt-3" th:text="${titulo}"></h1>
+	<div class="container">
+	<a class="btn btn-primary" th:href="@{/profesor/alta}">Alta Profesor</a>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>DNI</th>
+					<th>Estado</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="profesor:${profesores}">
+					<td><a class="btn btn-primary " th:href="@{/profesor/} + ${profesor.id}"
+						th:text="${profesor.id}"></a></td>
+					<td th:text="${profesor.nombre}"></td>
+					<td th:text="${profesor.apellido}"></td>
+					<td th:text="${profesor.dni}"></td>
+					<td th:if="${profesor.activo}">Activo</td>
+					<td th:unless="${profesor.activo}">Inactivo</td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{/profesor/editar/}+${profesor.id}" class="btn btn-primary">Editar</a></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{/profesor/delete/}+${profesor.id}" class="btn btn-danger">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="layout/layout :: scripts"></div>
+	<br>
+	<br>
+	<div th:replace="layout/layout :: roles"></div>
+</body>
+</html>

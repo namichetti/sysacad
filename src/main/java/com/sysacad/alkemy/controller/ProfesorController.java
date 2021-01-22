@@ -31,9 +31,9 @@ public class ProfesorController {
 	@GetMapping("/")
 	public String getAll(Model model) {
 		List<Profesor> profesores = profesorService.getAll();
-		model.addAttribute("titulo","Lista de profesores");
+		model.addAttribute("titulo","Lista de Profesores");
 		model.addAttribute("profesores", profesores);
-		return "index";
+		return "lista_profesores";
 	}
 	
 	@GetMapping("/{id}")
@@ -50,7 +50,6 @@ public class ProfesorController {
 			return "redirect:/profesor/";
 		}	
 		model.addAttribute("titulo","Profesor");
-		model.addAttribute("subTitulo","Materias");
 		model.addAttribute("profesor", profesor);
 		
 		return "ver_profesor";

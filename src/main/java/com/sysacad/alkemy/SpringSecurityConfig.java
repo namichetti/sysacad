@@ -16,7 +16,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	/*@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}*/
+	}*/ 
+	//si pongo esto de arriba no funca
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -30,6 +31,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		System.out.println("Viene por aca");
 		auth.inMemoryAuthentication().withUser("nestor").password("{noop}12345").roles("USER");
+		//auth.userDetailsService(userDetailsService)
 	}
 	
 }

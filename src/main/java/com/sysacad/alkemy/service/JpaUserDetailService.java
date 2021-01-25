@@ -43,7 +43,7 @@ public class JpaUserDetailService implements UserDetailsService{
 		if(roles.isEmpty()) {
 			throw new UsernameNotFoundException("El usuario " + username + " no tiene rol/es asignados.");
 		}
-		
+
 		return new User(username, usuario.getClave(), usuario.getHabilitado(), true, true, true, roles);
 	}
 

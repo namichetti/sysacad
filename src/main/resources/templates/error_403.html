@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<div th:replace="layout/layout :: alerts"></div>
+	<div class="alert alert-danger" role="alert">
+		<h4 class="alert-heading">ERROR 403</h4>
+		No tiene permiso para ingresar aquí
+		<div class="alert alert-danger" role="alert">
+			<a href="@{/materia/}" class="alert-link"><strong>Volver al Inicio</strong></a>
+		</div>
+	</div>
+	<div th:replace="layout/layout :: scripts"></div>
+</body>
+</html>

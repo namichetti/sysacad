@@ -17,8 +17,8 @@ import com.sysacad.alkemy.dao.IUsuarioDao;
 import com.sysacad.alkemy.entity.Rol;
 import com.sysacad.alkemy.entity.Usuario;
 
-@Service
-public class JpaUserDetailService implements UserDetailsService{
+@Service("jpaUserDetailsService")
+public class JpaUserDetailsService implements UserDetailsService{
 	
 	@Autowired
 	private IUsuarioDao usuarioDao;
@@ -28,9 +28,11 @@ public class JpaUserDetailService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioDao.findByUsuario(username);
 		
+		
 		if(usuario == null) {
 			throw new UsernameNotFoundException("No se encontró el usuario " + username);
 		}
+		
 		
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 
@@ -43,8 +45,7 @@ public class JpaUserDetailService implements UserDetailsService{
 		if(roles.isEmpty()) {
 			throw new UsernameNotFoundException("El usuario " + username + " no tiene rol/es asignados.");
 		}
-
-		return new User(username, usuario.getClave(), usuario.getHabilitado(), true, true, true, roles);
+		return new User(usuario.getUsuario(), usuario.getClave(), usuario.getHabilitado(), true, true, true, roles);
 	}
 
 }

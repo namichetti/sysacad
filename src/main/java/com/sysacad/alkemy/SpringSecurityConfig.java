@@ -9,29 +9,35 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.sysacad.alkemy.service.JpaUserDetailsService;
+
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
-	/*@Bean
+	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}*/ 
-	//si pongo esto de arriba no funca
+	}
+
+	@Autowired
+	private JpaUserDetailsService userDetailsService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/css/**,/js/**").hasRole("USER")
+		http.authorizeRequests().antMatchers("/css/**","/js/**", "/", "/materia/", "/profesor/").permitAll().anyRequest().authenticated()
 		.and()
-		.formLogin();
+		.formLogin().permitAll()
+		.and()
+		.logout().permitAll()
+		.and()
+		.exceptionHandling().accessDeniedPage("/error_403"); 
 
 	}
 
 	@Autowired
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		System.out.println("Viene por aca");
-		auth.inMemoryAuthentication().withUser("nestor").password("{noop}12345").roles("USER");
-		//auth.userDetailsService(userDetailsService)
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
 }

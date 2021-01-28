@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sysacad.alkemy.dao.IMateriaDao;
 import com.sysacad.alkemy.entity.Materia;
+import com.sysacad.alkemy.entity.Usuario;
 
 
 @Service
@@ -39,6 +40,7 @@ public class MateriaServiceImpl implements IMateriaService {
 	public void deleteOne(Long id) {
 		materiaDao.deleteById(id);
 	}
+
 
 }
 

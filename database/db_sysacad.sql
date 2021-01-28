@@ -28,7 +28,7 @@ CREATE TABLE `materias` (
   `horario` date DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `materias` (
 
 LOCK TABLES `materias` WRITE;
 /*!40000 ALTER TABLE `materias` DISABLE KEYS */;
-INSERT INTO `materias` VALUES (1,25,NULL,'Matemática Discreta'),(2,40,NULL,'Análisis Matemático'),(3,0,NULL,'Investigación Operativa'),(4,2,NULL,'Algotirmos y estructuras de datos'),(5,10,NULL,'Inteligencia Artificial'),(8,24,NULL,'Física');
+INSERT INTO `materias` VALUES (1,34,NULL,'Análisis Matemático'),(2,5,NULL,'Investigación Operativa'),(3,7,NULL,'Algotirmos y estructuras de datos'),(4,0,NULL,'Inteligencia Artificial'),(5,12,NULL,'Física');
 /*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +62,7 @@ CREATE TABLE `materias_profesores` (
 
 LOCK TABLES `materias_profesores` WRITE;
 /*!40000 ALTER TABLE `materias_profesores` DISABLE KEYS */;
-INSERT INTO `materias_profesores` VALUES (1,6),(1,6),(1,2),(2,1),(2,2),(2,5),(3,2),(3,6),(4,1),(4,4),(4,6);
+INSERT INTO `materias_profesores` VALUES (2,1),(2,2),(2,5),(3,2),(3,6),(4,1),(4,4),(4,6);
 /*!40000 ALTER TABLE `materias_profesores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_3m5n1w5trapxlbo2s42ugwdmd` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,6 +146,33 @@ LOCK TABLES `usuarios` WRITE;
 INSERT INTO `usuarios` VALUES (1,'$2a$10$YRXeoVzriLa/B17Pvx1xe.xqlffn4iYaPJ0Z87KqXfritXJZoSQPu',_binary '','alumno'),(2,'$2a$10$46vS2w0Q.TgRppHlKkgVX.HwcDHUFZsPbvWBSHgCAm62Vi1yGMh6q',_binary '','administrador');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios_materias`
+--
+
+DROP TABLE IF EXISTS `usuarios_materias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuarios_materias` (
+  `usuario_id` bigint NOT NULL,
+  `materias_id` bigint NOT NULL,
+  KEY `FKhc7g73pvnse90cbvuhqpos9y3` (`materias_id`),
+  KEY `FK98bgidg8m9ccguht76w8c2wgl` (`usuario_id`),
+  CONSTRAINT `FK98bgidg8m9ccguht76w8c2wgl` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `FKhc7g73pvnse90cbvuhqpos9y3` FOREIGN KEY (`materias_id`) REFERENCES `materias` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios_materias`
+--
+
+LOCK TABLES `usuarios_materias` WRITE;
+/*!40000 ALTER TABLE `usuarios_materias` DISABLE KEYS */;
+INSERT INTO `usuarios_materias` VALUES (1,3);
+/*!40000 ALTER TABLE `usuarios_materias` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -156,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-27 23:00:35
+-- Dump completed on 2021-01-28 15:51:16

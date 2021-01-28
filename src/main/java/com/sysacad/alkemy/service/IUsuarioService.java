@@ -1,12 +1,11 @@
 package com.sysacad.alkemy.service;
 
-
-import com.sysacad.alkemy.entity.Materia;
+import com.sysacad.alkemy.entity.Usuario;
 
 public interface IUsuarioService {
 	
 
-	public Materia saveOne(Materia materia);
+	public Usuario saveOne(Usuario usuario);
 	
 
 }

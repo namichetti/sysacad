@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sysacad.alkemy.dao.IUsuarioDao;
-import com.sysacad.alkemy.entity.Materia;
+import com.sysacad.alkemy.entity.Usuario;
 
 @Service
 public class UsuarioServiceImpl implements IUsuarioService{
@@ -16,8 +16,8 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Override
 	@Transactional
-	public Materia saveOne(Materia materia) {
-		return usuarioDao.save(materia);
+	public Usuario saveOne(Usuario usuario) {
+		return usuarioDao.save(usuario);
 	}
 	
 

@@ -12,9 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -33,25 +31,13 @@ public class Materia implements Serializable{
 	@Column(name="materia_id")
 	private List<Profesor> profesores;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name="materia_id")
-	private List<Usuario> usuarios;
-	
 	private static final long serialVersionUID = 1L;
 	
 	public Materia() {
 		profesores = new ArrayList<Profesor>();
-		usuarios = new ArrayList<Usuario>();
 	}
 	
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
-	
 	public Long getId() {
 		return Id;
 	}

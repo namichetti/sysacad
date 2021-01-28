@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,11 +36,22 @@ public class  Usuario implements Serializable{
 	@JoinColumn(name="usuario_id")
 	private List<Rol> roles;
 	
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@Column(name="usuario_id")
+	private List<Materia> materias;
+	
 	public Long getId() {
 		return id;
 	}
 	public Usuario() {
 		this.roles = new ArrayList<Rol>();
+		this.materias = new ArrayList<Materia>();
+	}
+	public List<Materia> getMaterias() {
+		return materias;
+	}
+	public void setMaterias(List<Materia> materias) {
+		this.materias = materias;
 	}
 	public void setId(Long id) {
 		this.id = id;

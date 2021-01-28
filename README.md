@@ -3,6 +3,8 @@
 Simulación de una aplicación web donde los alumnos de una universidad puedan
 inscribirse a las materias que desean cursar.
 
+
+
 ##  TECNOLOGÍAS USADAS
 
 - **Backend**: Java 11, Spring Boot 2.4.2.

@@ -16,6 +16,7 @@
 					<th>Materia</th>
 					<th>Horario</th>
 					<th>Cupo</th>
+					<th sec:authorize="hasRole('ROLE_USER')">Incripción</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,6 +24,7 @@
 					<td th:text="${materia.nombre}"></td>
 					<td th:text="${materia.horario}"></td>		
 					<td th:text="${materia.cupo} + ' alumnos '"></td>
+					<td sec:authorize="hasRole('ROLE_USER')"><a class ="btn btn-primary" th:href="@{/materia/}">Incribirse</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -39,11 +41,11 @@
 				<tr th:each="profesor:${materia.profesores}">
 					<td th:text="${profesor.nombre}"></td>
 					<td th:text="${profesor.apellido}"></td>
-					<td><a class ="btn btn-primary" th:href="@{/materia/}">Incribirse</a></td>
 				</tr>
 			</tbody>
 		</table>
 		<a class ="btn btn-primary" th:href="@{/materia/}">Volver</a>
 	</div>
+	<div th:replace="layout/layout :: scripts"></div>
 </body>
 </html>

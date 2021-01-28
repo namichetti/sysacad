@@ -3,7 +3,7 @@
 Simulación de una aplicación web donde los alumnos de una universidad puedan
 inscribirse a las materias que desean cursar.
 
-![alt text](https://raw.githubusercontent.com/namichetti/sysacad/main/src/main/image/sysacad1.png)
+![alt text](https://raw.githubusercontent.com/namichetti/sysacad/main/src/main/resources/static/image/sysacad.png)
 
 ##  TECNOLOGÍAS UTILIZADAS
 

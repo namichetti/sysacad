@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sysacad.alkemy.dao.IMateriaDao;
 import com.sysacad.alkemy.entity.Materia;
-import com.sysacad.alkemy.entity.Usuario;
 
 
 @Service

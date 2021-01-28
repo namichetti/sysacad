@@ -52,18 +52,19 @@ public class UsuarioController {
 		}	
 		
 		int cupo = materia.getCupo() - 1;
-		if(cupo < 1) {
+		if(cupo >= 1) {
 			materia.setCupo(cupo);
 			materiaService.saveOne(materia);
-			flash.addFlashAttribute("danger","No hay cupo disponible para la materia.");
-			return "redirect:/materia/";
+			flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());
+		}else {
+			flash.addFlashAttribute("danger","No hay cupo disponible para la materia");
 		}
 		
 		List<Materia> materias = new ArrayList<Materia>();
 		materias.add(materia);
 		usuario.setMaterias(materias);
 		usuarioService.saveOne(usuario);
-		flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());	
+		
 		return "redirect:/materia/";
 	}
 	

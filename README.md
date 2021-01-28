@@ -3,10 +3,16 @@
 Simulación de una aplicación web donde los alumnos de una universidad puedan
 inscribirse a las materias que desean cursar.
 
+##  TECNOLOGÍAS USADAS
+
+- **Backend**: Java 11, Spring Boot 2.4.2.
+- **Frontend**: Boostrap v5.0.0-beta1, Thymeleaf.
+
+
 ##  ROLES
 
-- **administrador**: podrá ver la lista de profesores de cada materia, así como la lista de las materias mismas. Podrá también gestionar tanto profesores como materias.
-- **alumno**: podrá ver la lista de materias, su información, descripción así como inscribirse a las mismas siempre y cuando haya cupo disponible.
+- **Administrador**: podrá ver la lista de profesores de cada materia, así como la lista de las materias mismas. Podrá también gestionar tanto profesores como materias.
+- **Alumno**: podrá ver la lista de materias, su información, descripción así como inscribirse a las mismas siempre y cuando haya cupo disponible.
 
 ##  DATOS DE INGRESO
 

@@ -24,7 +24,11 @@
 					<td th:text="${materia.nombre}"></td>
 					<td th:text="${materia.horario}"></td>		
 					<td th:text="${materia.cupo} + ' alumnos '"></td>
-					<td sec:authorize="hasRole('ROLE_USER')"><a class ="btn btn-primary" th:href="@{/materia/}">Incribirse</a></td>
+					<td sec:authorize="hasRole('ROLE_USER')">
+					<form th:action="@{/usuario/inscribirse/} + ${materia.id}" method="POST">
+						<button class ="btn btn-primary" type="submit">Inscribirse</button>
+					</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>

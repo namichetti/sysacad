@@ -33,7 +33,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/css/**","/js/**").permitAll().anyRequest().authenticated()
 		.and()
-		.formLogin().successHandler(successHandler).loginPage("/login").permitAll()
+		.formLogin().successHandler(successHandler).loginPage("/login").defaultSuccessUrl("/materia/",true).permitAll()
 		.and()
 		.logout().permitAll()
 		.and()

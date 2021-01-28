@@ -1,5 +1,7 @@
 package com.sysacad.alkemy.controller;
 
+
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -27,10 +29,11 @@ public class MateriaController {
 	
 	@Autowired
 	private IMateriaService materiaService;
-
+	
 	@GetMapping("/")
 	public String getAll(Model model) {
 		List<Materia> materias = materiaService.getAll();
+		Collections.sort(materias, (x, y) -> x.getNombre().compareToIgnoreCase(y.getNombre()));
 		model.addAttribute("titulo","Lista de Materias");
 		model.addAttribute("materias", materias);
 		return "index";
@@ -116,5 +119,7 @@ public class MateriaController {
 		model.addAttribute("materia", materia);
 		return "formulario_materia";
 	}
+	
+	
 	
 }

@@ -52,10 +52,10 @@ public class UsuarioController {
 		}	
 		
 		int cupo = materia.getCupo() - 1;
-		if(cupo > 0) {
+		if(cupo < 1) {
 			materia.setCupo(cupo);
 			materiaService.saveOne(materia);
-			flash.addFlashAttribute("danger","No hay cupo dispobile materia.");
+			flash.addFlashAttribute("danger","No hay cupo disponible para la materia.");
 			return "redirect:/materia/";
 		}
 		

@@ -1,7 +1,7 @@
 package com.sysacad.alkemy.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +24,12 @@ public class Materia implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long Id;
 	private String nombre;
-	private LocalDate horario;
+	@Column(name="horario_inicio")
+	private LocalTime horarioInicio;
+	@Column(name="horario_fin")
+	private LocalTime HorarioFin;
 	private Integer cupo;
+	
 	
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@Column(name="materia_id")
@@ -37,6 +41,23 @@ public class Materia implements Serializable{
 		profesores = new ArrayList<Profesor>();
 	}
 	
+	public LocalTime getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public void setHorarioInicio(LocalTime horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+
+	public LocalTime getHorarioFin() {
+		return HorarioFin;
+	}
+
+
+	public void setHorarioFin(LocalTime horarioFin) {
+		HorarioFin = horarioFin;
+	}
 
 	public Long getId() {
 		return Id;
@@ -49,12 +70,6 @@ public class Materia implements Serializable{
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public LocalDate getHorario() {
-		return horario;
-	}
-	public void setHorario(LocalDate horario) {
-		this.horario = horario;
 	}
 	public Integer getCupo() {
 		return cupo;

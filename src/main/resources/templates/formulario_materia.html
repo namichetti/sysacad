@@ -17,10 +17,16 @@
 						th:errors="*{nombre}"></small>
 				</div>
 				<div class="form-group">
-					<label for="horario">Horario</label> <input type="text"
-						class="form-control" th:field="*{horario}" name="horario"
-						placeholder="horario" /> <small class="text text-danger"
-						th:if="${#fields.hasErrors('horario')}" th:errors="*{horario}"></small>
+					<label for="horarioInicio">Horario Inicio</label> <input type="text"
+						class="form-control" th:field="*{horarioInicio}" name="horarioInicio"
+						placeholder="horarioInicio" /> <small class="text text-danger"
+						th:if="${#fields.hasErrors('horarioInicio')}" th:errors="*{horarioInicio}"></small>
+				</div>
+				<div class="form-group">
+					<label for="horarioFin">Horario Fin</label> <input type="text"
+						class="form-control" th:field="*{horarioFin}" name="horarioFin"
+						placeholder="horarioFin" /> <small class="text text-danger"
+						th:if="${#fields.hasErrors('horarioFin')}" th:errors="*{horarioFin}"></small>
 				</div>
 				<div class="form-group">
 					<label for="cupo">Cupo</label> <input type="text"

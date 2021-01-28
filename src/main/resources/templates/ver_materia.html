@@ -22,7 +22,7 @@
 			<tbody>
 				<tr>
 					<td th:text="${materia.nombre}"></td>
-					<td th:text="${materia.horario}"></td>		
+					<td th:text="${materia.horarioInicio} ' a ' ${materia.horarioFin}"></td>		
 					<td th:text="${materia.cupo} + ' alumnos '"></td>
 					<td sec:authorize="hasRole('ROLE_USER')">
 					<form th:action="@{/usuario/inscribirse/} + ${materia.id}"  method="POST">
@@ -53,8 +53,6 @@
 	</div>
 	<div th:replace="layout/layout :: scripts"></div>
 	
-	<div sec:authentication="name"></div>
-    <div id ="usuario" sec:authentication="principal.authorities"></div>
     
 </body>
 </html>

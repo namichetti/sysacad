@@ -13,7 +13,8 @@
 				<tr>
 					<th>Id</th>
 					<th>Materia</th>
-					<th>Horario</th>
+					<th>Horario inicio cursado</th>
+					<th>Horario fin cursado</th>
 					<th>Cupo</th>
 					<th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
 					<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
@@ -24,7 +25,8 @@
 					<td><a class="btn btn-primary " th:href="@{/materia/} + ${materia.id}"
 						th:text="${materia.id}"></a></td>
 					<td th:text="${materia.nombre}"></td>
-					<td th:text="${materia.horario}"></td>
+					<td th:text="${materia.horarioInicio}"></td>
+					<td th:text=" ${materia.horarioFin}"></td>
 					<td th:text="${materia.cupo}"></td>
 					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 						th:href="@{/materia/editar/}+${materia.id}" class="btn btn-primary">Editar</a></td>

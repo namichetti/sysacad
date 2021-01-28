@@ -39,6 +39,7 @@
 				<tr th:each="profesor:${materia.profesores}">
 					<td th:text="${profesor.nombre}"></td>
 					<td th:text="${profesor.apellido}"></td>
+					<td><a class ="btn btn-primary" th:href="@{/materia/}">Incribirse</a></td>
 				</tr>
 			</tbody>
 		</table>

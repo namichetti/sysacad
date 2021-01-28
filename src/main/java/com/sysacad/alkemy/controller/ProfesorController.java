@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,6 +56,7 @@ public class ProfesorController {
 		return "ver_profesor";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/delete/{id}")
 	public String deleteProfesor(@PathVariable Long id, Model model, RedirectAttributes flash) {
 		
@@ -68,6 +70,7 @@ public class ProfesorController {
 		return "redirect:/profesor/";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/guardar")
 	public String saveProfesor(@Valid Profesor profesor, BindingResult result, Model model, RedirectAttributes flash, SessionStatus session) {
 		
@@ -83,6 +86,7 @@ public class ProfesorController {
 		return "redirect:/profesor/";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/alta")
 	public String uploadProfesor(Profesor profesor, Model model) {
 		model.addAttribute("titulo", "Formulario de profesor");
@@ -90,6 +94,7 @@ public class ProfesorController {
 		return "formulario_profesor";
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/editar/{id}")
 	public String updateProfesor(@PathVariable Long id, Model model,RedirectAttributes flash) {
 		

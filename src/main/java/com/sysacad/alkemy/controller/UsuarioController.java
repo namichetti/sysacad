@@ -51,6 +51,13 @@ public class UsuarioController {
 			return "redirect:/materia/";
 		}	
 		
+		int cupo = materia.getCupo() - 1;
+		if(cupo > 0) {
+			materia.setCupo(cupo);
+			materiaService.saveOne(materia);
+			flash.addFlashAttribute("danger","No hay cupo dispobile materia.");
+			return "redirect:/materia/";
+		}
 		
 		List<Materia> materias = new ArrayList<Materia>();
 		materias.add(materia);

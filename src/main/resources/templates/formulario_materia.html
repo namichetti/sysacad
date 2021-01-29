@@ -19,13 +19,13 @@
 				<div class="form-group">
 					<label for="horarioInicio">Horario Inicio</label> <input type="text"
 						class="form-control" th:field="*{horarioInicio}" name="horarioInicio"
-						placeholder="horarioInicio" /> <small class="text text-danger"
+						placeholder="Horario inicio" /> <small class="text text-danger"
 						th:if="${#fields.hasErrors('horarioInicio')}" th:errors="*{horarioInicio}"></small>
 				</div>
 				<div class="form-group">
 					<label for="horarioFin">Horario Fin</label> <input type="text"
 						class="form-control" th:field="*{horarioFin}" name="horarioFin"
-						placeholder="horarioFin" /> <small class="text text-danger"
+						placeholder="Horario fin" /> <small class="text text-danger"
 						th:if="${#fields.hasErrors('horarioFin')}" th:errors="*{horarioFin}"></small>
 				</div>
 				<div class="form-group">
@@ -34,14 +34,16 @@
 						placeholder="Cupo" /> <small class="text text-danger"
 						th:if="${#fields.hasErrors('cupo')}" th:errors="*{cupo}"></small>
 				</div>
-				
-				<!--  <div class="form-group">
-					<label for="profesor">Profesor</label> <input type="text"
-						class="form-control" th:field="*{profesor}" name="profesor"
-						placeholder="Profesor" /> <small class="text text-danger"
-						th:if="${#fields.hasErrors('profesor')}" th:errors="*{profesor}"></small>
-				</div> -->
-				
+				<div class="form-group">
+					<label for="cupo">Profesor</label><br>
+					<select name="profesor" class="custom-select">
+		            <option th:each="profesor,item: ${profesores}"
+		              th:value="${profesor.id}"
+		              th:text="${profesor.nombre} +' ' + ${profesor.apellido}"
+		              th:selected="false"/>
+         			 </select>
+					<small class="text text-danger" th:if="${#fields.hasErrors('cupo')}" th:errors="*{cupo}"></small>
+				</div><br>
 				<input type="submit" class="btn btn-primary" value="Ingresar" />
 			</form>
 		</div>

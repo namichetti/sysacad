@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="profesores")
@@ -15,8 +17,11 @@ public class Profesor implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long Id;
+	@NotEmpty
 	private String nombre;
+	@NotEmpty
 	private String apellido;
+	@NotNull
 	private Integer dni;
 	private Boolean activo;
 	private static final long serialVersionUID = 1L;

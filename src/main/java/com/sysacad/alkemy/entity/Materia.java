@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -23,11 +25,15 @@ public class Materia implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long Id;
+	@NotEmpty
 	private String nombre;
 	@Column(name="horario_inicio")
+	@NotNull
 	private LocalTime horarioInicio;
 	@Column(name="horario_fin")
+	@NotNull
 	private LocalTime HorarioFin;
+	@NotNull
 	private Integer cupo;
 	
 	

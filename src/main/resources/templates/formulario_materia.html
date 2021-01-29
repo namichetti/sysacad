@@ -26,7 +26,7 @@
 					<label for="horarioFin">Horario Fin</label> <input type="text"
 						class="form-control" th:field="*{horarioFin}" name="horarioFin"
 						placeholder="Horario fin" /> <small class="text text-danger"
-						th:if="${#fields.hasErrors('horarioFin')}" th:errors="*{horarioFin}"></small>
+						th:if="${#fields.hasErrors('HorarioFin')}" th:errors="*{HorarioFin}"></small>
 				</div>
 				<div class="form-group">
 					<label for="cupo">Cupo</label> <input type="text"
@@ -42,7 +42,6 @@
 		              th:text="${profesor.nombre} +' ' + ${profesor.apellido}"
 		              th:selected="false"/>
          			 </select>
-					<small class="text text-danger" th:if="${#fields.hasErrors('cupo')}" th:errors="*{cupo}"></small>
 				</div><br>
 				<input type="submit" class="btn btn-primary" value="Ingresar" />
 			</form>

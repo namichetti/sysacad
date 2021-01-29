@@ -83,17 +83,18 @@ public class MateriaController {
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/guardar")
 	public String saveMateria(HttpServletRequest request, @Valid Materia materia, BindingResult result, Model model, RedirectAttributes flash, SessionStatus session) {
-		
+		List<Profesor> profesores = profesorService.getAll();
 		if(result.hasErrors()) {
-			model.addAttribute("titulo","Formulario de Materia");	
+			model.addAttribute("titulo","Formulario de Materia");
+			model.addAttribute("profesores",profesores);
 			return "formulario_materia";
 		}
 		
 		String id = request.getParameter("profesor");
 		Profesor profesor = profesorService.getOne(Long.parseLong(id));
-		List<Profesor> profesores = new ArrayList<Profesor>();
-		profesores.add(profesor);
-		materia.setProfesores(profesores);
+		List<Profesor> p = new ArrayList<Profesor>();
+		p.add(profesor);
+		materia.setProfesores(p);
 		
 		String mensaje = materia.getId() != null ? "La materia fue actualizada":"La materia fue dada de alta";
 		flash.addFlashAttribute("success",mensaje);	

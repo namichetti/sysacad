@@ -1,5 +1,6 @@
 package com.sysacad.alkemy.controller;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,14 +53,46 @@ public class UsuarioController {
 		}	
 		
 		int cupo = materia.getCupo() - 1;
-		if(cupo >= 1) {
+		/*if(cupo >= 1) {
 			materia.setCupo(cupo);
 			materiaService.saveOne(materia);
 			flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());
 		}else {
 			flash.addFlashAttribute("danger","No hay cupo disponible para la materia");
-		}
+		}*/
 		
+		if(cupo >= 1) {
+			
+		 materia.setCupo(cupo);
+		 materiaService.saveOne(materia);
+		 
+		 LocalTime Horarioinicio = LocalTime.parse(materia.getHorarioInicio().toString()); 
+	     LocalTime Horariofin = LocalTime.parse(materia.getHorarioFin().toString()); 
+	     
+	     for(Materia m: usuario.getMaterias()) {
+	    	 
+	    	 int resultadoHorarioInicio = Horarioinicio.compareTo(m.getHorarioFin()); 
+	    	 int resultadoHorarioFin = Horariofin.compareTo(m.getHorarioInicio()); 
+	    	 int resultadoHorarioFinConFin= Horariofin.compareTo(m.getHorarioFin());			 
+	    	 int resultadoHorarioInicioConInicio = Horarioinicio.compareTo(m.getHorarioInicio());																	
+	    	 
+	    	 if (resultadoHorarioInicio > 0 &&  resultadoHorarioFin == 0 && resultadoHorarioFinConFin >0 && resultadoHorarioInicioConInicio >0)
+	 				flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());
+		      else if (resultadoHorarioInicio > 0 &&  resultadoHorarioFin > 0 && resultadoHorarioFinConFin >0 && resultadoHorarioInicioConInicio >0)
+					flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());
+		      else if (resultadoHorarioInicio == 0 &&  resultadoHorarioFin > 0 && resultadoHorarioFinConFin > 0 && resultadoHorarioInicioConInicio > 0) 
+					flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());
+		      else if (resultadoHorarioInicio < 0 &&  resultadoHorarioFin < 0 && resultadoHorarioFinConFin <0 && resultadoHorarioInicioConInicio <0) 
+					flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());
+		      else if (resultadoHorarioInicio < 0 &&  resultadoHorarioFin == 0 && resultadoHorarioFinConFin < 0 && resultadoHorarioInicioConInicio < 0) 
+					flash.addFlashAttribute("success","Se ha inscripto satisfactoriamente a la materia " + materia.getNombre());
+		      else 
+					flash.addFlashAttribute("danger","No puede inscribirse a esta materia por superposición de horarios");
+	     	}
+		}else {
+			flash.addFlashAttribute("danger","No hay cupo disponible para la materia");
+		}
+			
 		List<Materia> materias = new ArrayList<Materia>();
 		materias.add(materia);
 		usuario.setMaterias(materias);

@@ -25,8 +25,9 @@ DROP TABLE IF EXISTS `materias`;
 CREATE TABLE `materias` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `cupo` int DEFAULT NULL,
-  `horario` date DEFAULT NULL,
+  `horario_inicio` time DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
+  `horario_fin` time DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `materias` (
 
 LOCK TABLES `materias` WRITE;
 /*!40000 ALTER TABLE `materias` DISABLE KEYS */;
-INSERT INTO `materias` VALUES (1,34,NULL,'Análisis Matemático'),(2,5,NULL,'Investigación Operativa'),(3,7,NULL,'Algotirmos y estructuras de datos'),(4,0,NULL,'Inteligencia Artificial'),(5,12,NULL,'Física');
+INSERT INTO `materias` VALUES (1,33,'20:00:00','Análisis Matemático','22:00:00'),(2,4,'10:30:00','Investigación Operativa','12:30:00'),(3,4,'17:15:00','Algotirmos y estructuras de datos','19:00:00'),(4,0,'13:00:00','Inteligencia Artificial','16:00:00'),(5,8,'08:00:00','Física','12:00:00');
 /*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +171,7 @@ CREATE TABLE `usuarios_materias` (
 
 LOCK TABLES `usuarios_materias` WRITE;
 /*!40000 ALTER TABLE `usuarios_materias` DISABLE KEYS */;
-INSERT INTO `usuarios_materias` VALUES (1,3);
+INSERT INTO `usuarios_materias` VALUES (1,5);
 /*!40000 ALTER TABLE `usuarios_materias` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -183,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-28 15:51:16
+-- Dump completed on 2021-01-28 21:50:44
